@@ -5,7 +5,8 @@
   <fc-general-details [fields]="fields" [itemForm]="itemForm" [parentAssociations]="parentAssociations"
     [childAssociations]="childAssociations" [IsUpdatePermission]="IsUpdatePermission" [loading]="loading"
     [title]="title" [idParam]="idParam" (onPickerScroll)="onPickerScroll($event)"
-    (onSelectAssociation)="selectAssociation($event)" (openChildDetails)="openChildDetails($event)" (onBack)="onBack()"
+    (onSelectAssociation)="selectAssociation($event)"        (onDownloadFile)="downloadFile($event)"
+    (openChildDetails)="openChildDetails($event)" (onBack)="onBack()"
     (onSubmit)="onSubmit()">
   </fc-general-details>
 </div>

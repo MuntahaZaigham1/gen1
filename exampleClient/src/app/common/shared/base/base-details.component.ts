@@ -348,7 +348,8 @@ export class BaseDetailsComponent<E> implements OnInit, CanDeactivateGuard {
     }
   }
   downloadFile(fieldName: string) {
-      this.dataService.downloadFile(this.idParam,fieldName).subscribe(res => {
+    this.dataService.downloadFile1(this.idParam,fieldName).subscribe(res => {
+        debugger;
         var file = new Blob([res]);
         // if (window.navigator.msSaveOrOpenBlob) // IE10+
         //     window.navigator.msSaveOrOpenBlob(file, fieldName);

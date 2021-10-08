@@ -71,18 +71,14 @@ public class T1Controller {
     
 	@GetMapping("/download/{id:.+}/{fieldName}")
     public ResponseEntity downloadFromDB(@PathVariable String id, @PathVariable String fieldName) {
-    	FindT1ByIdOutput output = _t1AppService.findById(Long.valueOf(id));
+    	String output = _t1AppService.downloadFile(Long.valueOf(id),fieldName);
     	Optional.ofNullable(output).orElseThrow(() -> new EntityNotFoundException(String.format("Not found")));
-    	
-    	try {
+    	//PropertyUtils.getProperty(output, fieldName)
+
 			return ResponseEntity.ok()
 					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fieldName + "\"")
-					.body(PropertyUtils.getProperty(output, fieldName));
-		} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new EntityNotFoundException(String.format("Not found"));
-		}
+					.body(output);
+
     }
 
     @PreAuthorize("hasAnyAuthority('T1ENTITY_READ')")

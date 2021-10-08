@@ -14,7 +14,7 @@ public interface IT1AppService {
     void delete(Long id);
 
     UpdateT1Output update(Long id, UpdateT1Input input);
-
+    String downloadFile(long id, String fieldName);
     FindT1ByIdOutput findById(Long id);
     List<FindT1ByIdOutput> find(SearchCriteria search, Pageable pageable) throws Exception;
     

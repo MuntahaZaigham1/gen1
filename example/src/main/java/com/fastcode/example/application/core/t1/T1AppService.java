@@ -7,6 +7,8 @@ import com.fastcode.example.domain.core.t1.IT1Repository;
 import com.fastcode.example.domain.core.t1.QT1;
 import com.fastcode.example.domain.core.t1.T1;
 
+import lombok.SneakyThrows;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page; 
 import org.springframework.data.domain.Pageable; 
@@ -17,7 +19,9 @@ import org.apache.commons.lang3.StringUtils;
 import com.fastcode.example.commons.search.*;
 import com.fastcode.example.commons.logging.LoggingHelper;
 import com.querydsl.core.BooleanBuilder;
-import java.time.*;
+
+import javax.persistence.EntityNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 @Service("t1AppService")
@@ -51,8 +55,10 @@ public class T1AppService implements IT1AppService {
 		T1 updatedT1 = _t1Repository.save(t1);
 		return mapper.t1ToUpdateT1Output(updatedT1);
 	}
-	
-	
+
+
+
+
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(Long t1Id) {
 
@@ -69,6 +75,28 @@ public class T1AppService implements IT1AppService {
 			return null; 
  	   
  	    return mapper.t1ToFindT1ByIdOutput(foundT1);
+	}
+	@Transactional(propagation = Propagation.NOT_SUPPORTED)
+	public String downloadFile(long t1Id, String fieldName) {
+
+		T1 foundT1 = _t1Repository.findById(t1Id).orElse(null);
+
+		if (foundT1 == null)
+			return null;
+
+		try {
+			return (String)PropertyUtils.getProperty(foundT1, fieldName);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return null;
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+			return null;
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 	
     @Transactional(propagation = Propagation.NOT_SUPPORTED)

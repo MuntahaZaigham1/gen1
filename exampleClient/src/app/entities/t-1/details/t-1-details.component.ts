@@ -127,19 +127,26 @@ export class T1DetailsComponent extends BaseDetailsComponent<IT1> implements OnI
   
   onItemFetched(item: IT1) {
     this.item = item;
-	 this.item.ca.forEach(elem => {
-          (<FormArray>this.itemForm.get('ca')).push(new FormControl(elem));
-      });
-        delete item.ca;
-	    delete item.file;
-	 this.item.flpa.forEach(elem => {
-          (<FormArray>this.itemForm.get('flpa')).push(new FormControl(elem));
-      });
+	debugger;
+	if(this.item.ca){
+		this.item.ca.forEach(elem => {
+			(<FormArray>this.itemForm.get('ca')).push(new FormControl(elem));
+		});
+		  delete item.ca;
+	}
+	else if(this.item.flpa){
+		this.item.flpa.forEach(elem => {
+			(<FormArray>this.itemForm.get('flpa')).push(new FormControl(elem));
+		});
         delete item.flpa;
-	 this.item.fpa.forEach(elem => {
-          (<FormArray>this.itemForm.get('fpa')).push(new FormControl(elem));
-      });
+	}
+	else if(this.item.fpa){
+		this.item.fpa.forEach(elem => {
+			(<FormArray>this.itemForm.get('fpa')).push(new FormControl(elem));
+		});
         delete item.fpa;
+	} 
+	delete item.file;
      this.itemForm.patchValue(item);
 
   }

@@ -197,9 +197,11 @@ export class GenericApiService<T> {
     return tmpDate;
   }
 
-    public downloadFile(id: any, fieldName: string): Observable<any> {
+    public downloadFile1(id: any, fieldName: string): Observable<any> {
+      debugger;
       return this.http.get<any>(`${this.url}/download/${id}/${fieldName}`).pipe(
         map((response: any) => {
+          debugger;
           return response;
         }),
         catchError(this.handleError)

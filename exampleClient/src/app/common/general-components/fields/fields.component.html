@@ -80,7 +80,7 @@
       class="mat-form-field mat-primary mat-form-field-type-mat-input mat-form-field-appearance-outline mat-form-field-can-float mat-form-field-should-float mat-form-field-has-label">
         <div fxFlex="100" class="file-container mat-form-field-wrapper">
           <div fxFlex="50">
-            <button mat-button (click)="onDownloadFile()">
+            <button mat-button (click)="downloadFile(field.name)">
               <mat-label>{{field.name}}</mat-label>
               <mat-icon>download</mat-icon>
             </button>

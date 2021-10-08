@@ -20,7 +20,7 @@ export class FieldsComponent implements OnInit {
   @Output() onBack: EventEmitter<any> = new EventEmitter();
   @Output() onSubmit: EventEmitter<any> = new EventEmitter();
   @Output() openChildDetails: EventEmitter<any> = new EventEmitter();
-  @Output() downloadFile: EventEmitter<any> = new EventEmitter();
+  @Output() onDownloadFile: EventEmitter<any> = new EventEmitter();
   constructor(public formBuilder: FormBuilder) {}
 
   ngOnInit() {}
@@ -28,8 +28,8 @@ export class FieldsComponent implements OnInit {
   pickerScroll(association) {
     this.onPickerScroll.emit(association);
   }
-  onDownloadFile(fieldName){
-    this.downloadFile.emit(fieldName);
+  downloadFile(fieldName){
+    this.onDownloadFile.emit(fieldName);
   }
 
 

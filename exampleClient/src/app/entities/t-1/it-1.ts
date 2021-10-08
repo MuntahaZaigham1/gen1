@@ -1,5 +1,5 @@
 export interface IT1 {  
-    	ca?: any[];
+    	ca?: string[];
         file?: Blob;
 	   flpa?: number[];
 	   fpa?: number[];
