@@ -20,7 +20,7 @@ export class FieldsComponent implements OnInit {
   @Output() onBack: EventEmitter<any> = new EventEmitter();
   @Output() onSubmit: EventEmitter<any> = new EventEmitter();
   @Output() openChildDetails: EventEmitter<any> = new EventEmitter();
-
+  @Output() downloadFile: EventEmitter<any> = new EventEmitter();
   constructor(public formBuilder: FormBuilder) {}
 
   ngOnInit() {}
@@ -28,6 +28,10 @@ export class FieldsComponent implements OnInit {
   pickerScroll(association) {
     this.onPickerScroll.emit(association);
   }
+  onDownloadFile(fieldName){
+    this.downloadFile.emit(fieldName);
+  }
+
 
   selectAssociation(association) {
     this.onSelectAssociation.emit(association);
@@ -46,9 +50,9 @@ export class FieldsComponent implements OnInit {
   }
   
   
-  addItem(field: string): void {
+  addItem(field: string,type:string): void {
     if (type == "file") {
-      (<FormArray>this.itemForm.get(`${field}Source`)).push(new FormControl(''));
+      (<FormArray>this.itemForm.get(`${field}FileSource`)).push(new FormControl(''));
       (<FormArray>this.itemForm.get(field)).push(new FormControl(''));
     }
     else {
@@ -64,14 +68,14 @@ export class FieldsComponent implements OnInit {
   handleFileInput(event, field: string) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.itemForm.get(`${field}Source`).setValue(file);
+      this.itemForm.get(`${field}FileSource`).setValue(file);
     }
   }
   
   handleFileInputArray(event, field: any, index) {
     if (event.target.files.length > 0) {
      var file: any[] = event.target.files[0];
-     this.itemForm.get(`${field}Source`).controls[index].setValue(file);
+     this.itemForm.get(`${field}FileSource`)[index].setValue(file);
     }
   }
 }

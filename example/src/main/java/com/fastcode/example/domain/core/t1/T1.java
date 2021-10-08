@@ -38,7 +38,8 @@ public class T1 extends AbstractEntity {
     private List<Double> fpa;
     
     @Id
-    @EqualsAndHashCode.Include() 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include()
     @Column(name = "id", nullable = false)
     private Long id;
     

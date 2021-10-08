@@ -124,6 +124,7 @@ export class GenericApiService<T> {
    * @returns Observable of created entity object.
    */
   public create(item: T): Observable<T> {
+    debugger;
     return this.http.post<T>(this.url, item).pipe(catchError(this.handleError));
   }
 

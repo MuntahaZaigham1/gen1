@@ -23,6 +23,7 @@ export class GeneralDetailsComponent implements OnInit {
 	@Output() onBack: EventEmitter<any> = new EventEmitter();
 	@Output() onSubmit: EventEmitter<any> = new EventEmitter();
 	@Output() openChildDetails: EventEmitter<any> = new EventEmitter();
+	@Output() downloadFile: EventEmitter<any> = new EventEmitter();
 
 	constructor(
 		public formBuilder: FormBuilder
@@ -46,7 +47,9 @@ export class GeneralDetailsComponent implements OnInit {
 	submit(){
 		this.onSubmit.emit();
 	}
-
+	onDownloadFile(file){
+		this.downloadFile.emit(file)
+	}
 	openDetails(association){
 		this.openChildDetails.emit(association);
 	}

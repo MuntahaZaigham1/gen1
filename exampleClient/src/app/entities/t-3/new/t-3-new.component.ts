@@ -70,8 +70,10 @@ export class T3NewComponent extends BaseNewComponent<IT3> implements OnInit {
 	
 	onSubmit() {
 		let t3 = this.itemForm.getRawValue();
+		const formData = new FormData();
+
    	  	    formData.append('score', this.itemForm.get('score').value);
-		super.onSubmit(t3);
+		super.onSubmit(formData);
 		
 	}
     

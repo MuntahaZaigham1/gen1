@@ -159,9 +159,11 @@ export class T1DetailsComponent extends BaseDetailsComponent<IT1> implements OnI
 	
 	onSubmit() {
 		let t1 = this.itemForm.getRawValue();
-	     t1.file=t1.fileFileSource;
-	     delete t1.fileFileSource;
-		super.onSubmit(t1);
+        const formData = new FormData();
+		formData.append('file', this.itemForm.get('fileFileSource').value);
+   	  	formData.append('flpa', this.itemForm.get('flpa').value);
+   	  	formData.append('fpa', this.itemForm.get('fpa').value);
+		super.onSubmit(formData);
 		
 	}
 }

@@ -350,9 +350,9 @@ export class BaseDetailsComponent<E> implements OnInit, CanDeactivateGuard {
   downloadFile(fieldName: string) {
       this.dataService.downloadFile(this.idParam,fieldName).subscribe(res => {
         var file = new Blob([res]);
-        if (window.navigator.msSaveOrOpenBlob) // IE10+
-            window.navigator.msSaveOrOpenBlob(file, fieldName);
-        else { // Others
+        // if (window.navigator.msSaveOrOpenBlob) // IE10+
+        //     window.navigator.msSaveOrOpenBlob(file, fieldName);
+        // else { // Others
             var a = document.createElement("a"),
                     url = URL.createObjectURL(file);
             a.href = url;
@@ -363,7 +363,7 @@ export class BaseDetailsComponent<E> implements OnInit, CanDeactivateGuard {
                 document.body.removeChild(a);
                 window.URL.revokeObjectURL(url);
             }, 0);
-        }
+        // }
       });
     }
 }

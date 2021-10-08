@@ -48,7 +48,7 @@ export class T1NewComponent extends BaseNewComponent<IT1> implements OnInit {
       	  fileFileSource:[],
       	  flpa: new FormArray([]),
       	  fpa: new FormArray([]),
-      id: ['', Validators.required],
+      id: ['',Validators.required],
       inet: [''],
       jb: [''],
       jbf: [''],
@@ -134,11 +134,17 @@ export class T1NewComponent extends BaseNewComponent<IT1> implements OnInit {
 	
 	onSubmit() {
 		let t1 = this.itemForm.getRawValue();
-        	  	     const formData = new FormData();
-	  	    formData.append('file', this.itemForm.get('fileFileSource').value);
-   	  	    formData.append('flpa', this.itemForm.get('flpa').value);
-   	  	    formData.append('fpa', this.itemForm.get('fpa').value);
-		super.onSubmit(t1);
+        const formData = new FormData();
+		formData.append('file', this.itemForm.get('fileFileSource').value);
+   	  	formData.append('flpa', this.itemForm.get('flpa').value);
+   	  	formData.append('fpa', this.itemForm.get('fpa').value);
+		formData.append('str', this.itemForm.get('str').value);
+   	  	formData.append('ca', this.itemForm.get('ca').value);
+   	  	formData.append('inet', this.itemForm.get('inet').value);
+   	  	formData.append('jbf', this.itemForm.get('jbf').value);
+   	  	formData.append('jb', this.itemForm.get('jb').value);
+		
+		super.onSubmit(formData);
 		
 	}
     
